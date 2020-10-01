@@ -3,7 +3,8 @@
 #include <fstream>
 
 void ColorTracker::init(cv::Mat & img, int x1, int y1, int x2, int y2)
-{
+{   
+    
     im1 = cv::Mat( img.rows, img.cols, CV_8UC1 );
     im2 = cv::Mat( img.rows, img.cols, CV_8UC1 );
     im3 = cv::Mat( img.rows, img.cols, CV_8UC1 );
@@ -13,7 +14,7 @@ void ColorTracker::init(cv::Mat & img, int x1, int y1, int x2, int y2)
     y2 = std::min(img.rows-1, y2);
     x1 = std::max(0, x1);
     x2 = std::min(img.cols-1, x2);
-
+          /*this is name */
     preprocessImage(img);
 
     extractForegroundHistogram(x1, y1, x2, y2, q_hist);
@@ -21,8 +22,10 @@ void ColorTracker::init(cv::Mat & img, int x1, int y1, int x2, int y2)
 
     extractBackgroundHistogram(x1, y1, x2, y2, b_hist);
 
+    /*this is name */
     Histogram b_weights = b_hist;
 
+    /*this is name */
     b_weights.transformToWeights();
     q_hist.multiplyByWeights(&b_weights);
 
